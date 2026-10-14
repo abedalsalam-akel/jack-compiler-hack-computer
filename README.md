@@ -10,26 +10,28 @@ An educational collection of **Nand2Tetris / Digital Systems** implementations, 
 | `project07` | VM translator (arithmetic, push/pop) | Python source; limited smoke testing |
 | `project08` | VM translator with branching/functions/calls | Python source; limited smoke testing |
 | `project09` | Jack Breakout game and generated VM | Gameplay not verified |
+| `project10` | Jack Analyzer: tokenizer and XML parse-tree generator | Basic XML smoke test included in CI |
 | `project11` | Jack-to-VM compiler | Basic Jack smoke test passed locally |
 | `legacy/project06` | Java Hack assembler coursework artifact | **Incomplete:** references missing helper classes; not a functioning assembler |
 
-**Project 10 Jack Analyzer** is not yet uploaded. The developer reports having implemented all projects independently; this repository will include Project 10 after its source is uploaded and tested.
+**Project 10 Jack Analyzer** is included in `project10/`, with a separate attribution note documenting the developer's account of its provenance.
 
 ## Quick start
 
 From the repository root using Python 3:
 
 ```sh
+python3 project10/Main.py examples/Main.jack
 python3 project11/Main.py examples/Main.jack
 python3 project08/Main.py examples/Simple.vm
 python3 -m unittest discover -s tests -v
 ```
 
-The commands generate `examples/Main.vm` and `examples/Simple.asm`; the generated files are ignored. A working Nand2Tetris hardware/CPU simulator is needed for the HDL projects.
+The commands generate `examples/Main.xml`, `examples/Main.vm` and `examples/Simple.asm`; generated outputs should not be committed. A working Nand2Tetris hardware/CPU simulator is needed for the HDL projects.
 
 ## Testing and scope
 
-Initial tests cover only a minimal Jack class compilation and a basic VM translation. They do **not** demonstrate full compiler correctness, CPU hardware simulation, assembler operation, or tested gameplay. Automated checks will be enabled once source files are uploaded.
+The smoke tests cover a minimal Jack analyzer XML parse tree, Jack class compilation, and basic VM translation. They do **not** demonstrate full compiler correctness, CPU hardware simulation, assembler operation, or tested gameplay. Automated checks run through GitHub Actions on each push.
 
 ## Attribution
 
