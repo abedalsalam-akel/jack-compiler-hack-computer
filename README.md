@@ -13,7 +13,7 @@ An educational collection of **Nand2Tetris / Digital Systems** implementations, 
 | `project11` | Jack-to-VM compiler | Basic Jack smoke test passed locally |
 | `legacy/project06` | Java Hack assembler coursework artifact | **Incomplete:** references missing helper classes; not a functioning assembler |
 
-The **Project 10 Jack Analyzer is excluded** while authorship is clarified.
+**Project 10 Jack Analyzer** is not yet uploaded. The developer reports having implemented all projects independently; this repository will include Project 10 after its source is uploaded and tested.
 
 ## Quick start
 
@@ -33,4 +33,4 @@ Initial tests cover only a minimal Jack class compilation and a basic VM transla
 
 ## Attribution
 
-University coursework submitted under **Abedalsalam Akel and Nadav Cohen**, as recorded in several original submission attribution files. Individual contribution ownership and permission to publish collaborators' work remain to be verified before public release. Some original Nand2Tetris or course scaffolding may be third-party material. No overall open-source license is granted.
+**Code implementation:** Abedalsalam Akel (self-reported sole developer). The university coursework was submitted jointly under Abedalsalam Akel and Nadav Cohen; joint submission does not imply joint code authorship. Original Nand2Tetris course-provided specifications and scaffold headers are retained and credited to their respective authors. No overall open-source license is granted.
