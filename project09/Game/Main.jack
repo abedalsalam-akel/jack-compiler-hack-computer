@@ -1,0 +1,9 @@
+class Main {
+    function void main() {
+        var BreakoutGame game;
+        let game = BreakoutGame.new();
+        do game.run();
+        do game.dispose();
+        return;
+    }
+}

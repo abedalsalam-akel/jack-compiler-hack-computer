@@ -1,0 +1,177 @@
+class Ball {
+    field int x, y;
+    field int size;
+    field int speed;
+    field int wall;
+    field int destx, desty;
+    field int prevDestx, prevDesty;
+    field int dx, dy;
+
+    constructor Ball new(int Ax, int Ay) {
+        let x = Ax;
+        let y = Ay;
+        let size = 6;
+        let speed = 3;
+        let prevDestx = Ax;
+        let prevDesty = Ay;
+        let wall = 0;
+        do show();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void show() {
+        do Screen.setColor(true);
+        do draw();
+        return;
+    }
+
+    method void hide() {
+        do Screen.setColor(false);
+        do draw();
+        return;
+    }
+
+    method void draw() {
+        do Screen.drawRectangle(x, y, x + size, y + size);
+        return;
+    }
+
+    method void setDestination(int Adestx, int Adesty) {
+        let destx = Adestx;
+        let desty = Adesty;
+        let dx = destx - x;
+        let dy = desty - y;
+        return;
+    }
+
+    method int getLeft() {
+        return x;
+    }
+
+    method int getRight() {
+        return x + size;
+    }
+
+    method int getTop() {
+        return y;
+    }
+
+    method int getBottom() {
+        return y + size;
+    }
+
+    method int getSize() {
+        return size;
+    }
+
+    method void setX(int Ax) {
+        let x = Ax;
+        return;
+    }
+
+    method void setY(int Ay) {
+        let y = Ay;
+        return;
+    }
+
+    method void increaseSpeed(int increment) {
+        let speed = speed + increment;
+        return;
+    }
+
+    method Array move() {
+        var int absdx, absdy;
+        var Array pos;
+        let pos = Array.new(2);
+        let absdx = Math.abs(dx);
+        let absdy = Math.abs(dy);
+        if (absdx = 0) {
+            if (dy > 0) {
+                let y = y + speed;
+            } else {
+                let y = y - speed;
+            }
+        } else {
+            if (absdy = 0) {
+                if (dx > 0) {
+                    let x = x + speed;
+                } else {
+                    let x = x - speed;
+                }
+            } else {
+                if ((dx > 0) & (dy > 0)) {
+                    if (absdx > absdy) {
+                        let y = y + speed;
+                        let x = x + ((absdx * speed) / absdy);
+                    } else {
+                        let x = x + speed;
+                        let y = y + ((absdy * speed) / absdx);
+                    }
+                }
+                if ((dx > 0) & (dy < 0)) {
+                    if (absdx > absdy) {
+                        let y = y - speed;
+                        let x = x + ((absdx * speed) / absdy);
+                    } else {
+                        let x = x + speed;
+                        let y = y - ((absdy * speed) / absdx);
+                    }
+                }
+                if ((dx < 0) & (dy > 0)) {
+                    if (absdx > absdy) {
+                        let y = y + speed;
+                        let x = x - ((absdx * speed) / absdy);
+                    } else {
+                        let x = x - speed;
+                        let y = y + ((absdy * speed) / absdx);
+                    }
+                }
+                if ((dx < 0) & (dy < 0)) {
+                    if (absdx > absdy) {
+                        let y = y - speed;
+                        let x = x - ((absdx * speed) / absdy);
+                    } else {
+                        let x = x - speed;
+                        let y = y - ((absdy * speed) / absdx);
+                    }
+                }
+            }
+        }
+        let pos[0] = x;
+        let pos[1] = y;
+        return pos;
+    }
+
+    method void bounce(int wall) {
+        if ((wall = 1) | (wall = 2)) {
+            let desty = 2 * y - prevDesty;
+            let prevDesty = y;
+            let destx = prevDestx;
+            let prevDestx = x;
+        }
+        if ((wall = 3) | (wall = 4)) {
+            let destx = 2 * x - prevDestx;
+            let prevDestx = x;
+            let desty = prevDesty;
+            let prevDesty = y;
+        }
+        if (wall = 5) {
+            let destx = 2 * x - prevDestx;
+            let prevDestx = x;
+            let desty = prevDesty;
+            let prevDesty = y;
+        }
+        let dx = destx - x;
+        let dy = desty - y;
+        if (dy = 0) {
+            let dx = -5;
+            let dy = 10;
+        }
+        return;
+    }
+}

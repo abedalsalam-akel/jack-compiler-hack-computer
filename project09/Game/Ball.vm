@@ -1,0 +1,486 @@
+function Ball.new 0
+    push constant 11
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push constant 6
+    pop this 2
+    push constant 3
+    pop this 3
+    push argument 0
+    pop this 7
+    push argument 1
+    pop this 8
+    push constant 0
+    pop this 4
+    push pointer 0
+    call Ball.show 1
+    pop temp 0
+    push pointer 0
+    return
+function Ball.dispose 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function Ball.show 0
+    push argument 0
+    pop pointer 0
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push pointer 0
+    call Ball.draw 1
+    pop temp 0
+    push constant 0
+    return
+function Ball.hide 0
+    push argument 0
+    pop pointer 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push pointer 0
+    call Ball.draw 1
+    pop temp 0
+    push constant 0
+    return
+function Ball.draw 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push this 1
+    push this 0
+    push this 2
+    add
+    push this 1
+    push this 2
+    add
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    return
+function Ball.setDestination 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 5
+    push argument 2
+    pop this 6
+    push this 5
+    push this 0
+    sub
+    pop this 9
+    push this 6
+    push this 1
+    sub
+    pop this 10
+    push constant 0
+    return
+function Ball.getLeft 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Ball.getRight 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push this 2
+    add
+    return
+function Ball.getTop 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Ball.getBottom 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    push this 2
+    add
+    return
+function Ball.getSize 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
+function Ball.setX 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 0
+    push constant 0
+    return
+function Ball.setY 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 1
+    push constant 0
+    return
+function Ball.increaseSpeed 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    push argument 1
+    add
+    pop this 3
+    push constant 0
+    return
+function Ball.move 3
+    push argument 0
+    pop pointer 0
+    push constant 2
+    call Array.new 1
+    pop local 2
+    push this 9
+    call Math.abs 1
+    pop local 0
+    push this 10
+    call Math.abs 1
+    pop local 1
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto Ball_1
+    push this 10
+    push constant 0
+    gt
+    not
+    if-goto Ball_3
+    push this 1
+    push this 3
+    add
+    pop this 1
+    goto Ball_2
+label Ball_3
+    push this 1
+    push this 3
+    sub
+    pop this 1
+label Ball_2
+    goto Ball_0
+label Ball_1
+    push local 1
+    push constant 0
+    eq
+    not
+    if-goto Ball_5
+    push this 9
+    push constant 0
+    gt
+    not
+    if-goto Ball_7
+    push this 0
+    push this 3
+    add
+    pop this 0
+    goto Ball_6
+label Ball_7
+    push this 0
+    push this 3
+    sub
+    pop this 0
+label Ball_6
+    goto Ball_4
+label Ball_5
+    push this 9
+    push constant 0
+    gt
+    push this 10
+    push constant 0
+    gt
+    and
+    not
+    if-goto Ball_9
+    push local 0
+    push local 1
+    gt
+    not
+    if-goto Ball_11
+    push this 1
+    push this 3
+    add
+    pop this 1
+    push this 0
+    push local 0
+    push this 3
+    call Math.multiply 2
+    push local 1
+    call Math.divide 2
+    add
+    pop this 0
+    goto Ball_10
+label Ball_11
+    push this 0
+    push this 3
+    add
+    pop this 0
+    push this 1
+    push local 1
+    push this 3
+    call Math.multiply 2
+    push local 0
+    call Math.divide 2
+    add
+    pop this 1
+label Ball_10
+    goto Ball_8
+label Ball_9
+label Ball_8
+    push this 9
+    push constant 0
+    gt
+    push this 10
+    push constant 0
+    lt
+    and
+    not
+    if-goto Ball_13
+    push local 0
+    push local 1
+    gt
+    not
+    if-goto Ball_15
+    push this 1
+    push this 3
+    sub
+    pop this 1
+    push this 0
+    push local 0
+    push this 3
+    call Math.multiply 2
+    push local 1
+    call Math.divide 2
+    add
+    pop this 0
+    goto Ball_14
+label Ball_15
+    push this 0
+    push this 3
+    add
+    pop this 0
+    push this 1
+    push local 1
+    push this 3
+    call Math.multiply 2
+    push local 0
+    call Math.divide 2
+    sub
+    pop this 1
+label Ball_14
+    goto Ball_12
+label Ball_13
+label Ball_12
+    push this 9
+    push constant 0
+    lt
+    push this 10
+    push constant 0
+    gt
+    and
+    not
+    if-goto Ball_17
+    push local 0
+    push local 1
+    gt
+    not
+    if-goto Ball_19
+    push this 1
+    push this 3
+    add
+    pop this 1
+    push this 0
+    push local 0
+    push this 3
+    call Math.multiply 2
+    push local 1
+    call Math.divide 2
+    sub
+    pop this 0
+    goto Ball_18
+label Ball_19
+    push this 0
+    push this 3
+    sub
+    pop this 0
+    push this 1
+    push local 1
+    push this 3
+    call Math.multiply 2
+    push local 0
+    call Math.divide 2
+    add
+    pop this 1
+label Ball_18
+    goto Ball_16
+label Ball_17
+label Ball_16
+    push this 9
+    push constant 0
+    lt
+    push this 10
+    push constant 0
+    lt
+    and
+    not
+    if-goto Ball_21
+    push local 0
+    push local 1
+    gt
+    not
+    if-goto Ball_23
+    push this 1
+    push this 3
+    sub
+    pop this 1
+    push this 0
+    push local 0
+    push this 3
+    call Math.multiply 2
+    push local 1
+    call Math.divide 2
+    sub
+    pop this 0
+    goto Ball_22
+label Ball_23
+    push this 0
+    push this 3
+    sub
+    pop this 0
+    push this 1
+    push local 1
+    push this 3
+    call Math.multiply 2
+    push local 0
+    call Math.divide 2
+    sub
+    pop this 1
+label Ball_22
+    goto Ball_20
+label Ball_21
+label Ball_20
+label Ball_4
+label Ball_0
+    push constant 0
+    push local 2
+    add
+    push this 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push local 2
+    add
+    push this 1
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 2
+    return
+function Ball.bounce 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 1
+    eq
+    push argument 1
+    push constant 2
+    eq
+    or
+    not
+    if-goto Ball_25
+    push constant 2
+    push this 1
+    call Math.multiply 2
+    push this 8
+    sub
+    pop this 6
+    push this 1
+    pop this 8
+    push this 7
+    pop this 5
+    push this 0
+    pop this 7
+    goto Ball_24
+label Ball_25
+label Ball_24
+    push argument 1
+    push constant 3
+    eq
+    push argument 1
+    push constant 4
+    eq
+    or
+    not
+    if-goto Ball_27
+    push constant 2
+    push this 0
+    call Math.multiply 2
+    push this 7
+    sub
+    pop this 5
+    push this 0
+    pop this 7
+    push this 8
+    pop this 6
+    push this 1
+    pop this 8
+    goto Ball_26
+label Ball_27
+label Ball_26
+    push argument 1
+    push constant 5
+    eq
+    not
+    if-goto Ball_29
+    push constant 2
+    push this 0
+    call Math.multiply 2
+    push this 7
+    sub
+    pop this 5
+    push this 0
+    pop this 7
+    push this 8
+    pop this 6
+    push this 1
+    pop this 8
+    goto Ball_28
+label Ball_29
+label Ball_28
+    push this 5
+    push this 0
+    sub
+    pop this 9
+    push this 6
+    push this 1
+    sub
+    pop this 10
+    push this 10
+    push constant 0
+    eq
+    not
+    if-goto Ball_31
+    push constant 5
+    neg
+    pop this 9
+    push constant 10
+    pop this 10
+    goto Ball_30
+label Ball_31
+label Ball_30
+    push constant 0
+    return

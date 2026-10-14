@@ -1,0 +1,87 @@
+class Brick {
+    field int x, y;
+    field int width, height;
+    field int face;
+    field boolean broken;
+
+    constructor Brick new(int Ax, int Ay, int Awidth, int Aheight) {
+        let x = Ax;
+        let y = Ay;
+        let width = Awidth;
+        let height = Aheight;
+        let face = 0;
+        let broken = false;
+        do show();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void show() {
+        do Screen.setColor(true);
+        do draw();
+        return;
+    }
+
+    method void hide() {
+        do Screen.setColor(false);
+        do draw();
+        return;
+    }
+
+    method void draw() {
+        do Screen.drawRectangle(x, y, x + width, y + height);
+        return;
+    }
+
+    method boolean broken() {
+        return broken;
+    }
+
+    method int hit(int ballLeft, int ballRight, int ballTop, int ballBottom) {
+        var int face;
+        let face = 0;
+        if (
+            ((ballTop < (y + height)) & (ballBottom > (y + height))) & 
+            ((ballLeft < (x + width)) & (ballRight > x))
+        ) {
+            let broken = true;
+            let face = 3;
+        }
+        if (
+            ((ballTop > y) & (ballBottom < y)) &
+            ((ballLeft < (x + width)) & (ballRight > x))
+        ) {
+            let broken = false;
+            let face = 4;
+        }
+        if (
+            ((ballTop < (y + height)) & (ballBottom > y)) &
+            ((ballLeft < x) & (ballRight > x))
+        ) {
+            let broken = true;
+            let face = 1;
+        }
+        if (
+            ((ballTop < (y + height)) & (ballBottom > y)) &
+            ((ballLeft < (x + width)) & (ballRight > (x + width)))
+        ) {
+            let broken = true;
+            let face = 2;
+        }
+        if (
+            (ballTop > y) & (ballBottom < (y + height)) &
+            (ballLeft > x) & (ballRight < (x + width))
+        ) {
+            let broken = true;
+            let face = 5;
+        }
+        if (broken) {
+            do hide();
+        }
+        return face;
+    }
+}

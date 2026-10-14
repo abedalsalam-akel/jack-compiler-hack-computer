@@ -1,0 +1,69 @@
+class Paddle {
+    field int x, y;
+    field int width, height;
+    field int direction;
+
+    constructor Paddle new(int Ax, int Ay, int Awidth, int Aheight) {
+        let x = Ax;
+        let y = Ay;
+        let width = Awidth;
+        let height = Aheight;
+        let direction = 0;
+        do show();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void show() {
+        do Screen.setColor(true);
+        do draw();
+        return;
+    }
+
+    method void hide() {
+        do Screen.setColor(false);
+        do draw();
+        return;
+    }
+
+    method void draw() {
+        do Screen.drawRectangle(x, y, x + width, y + height);
+        return;
+    }
+
+    method void setDirection(int Adirection) {
+        let direction = Adirection;
+        return;
+    }
+
+    method int getLeft() {
+        return x;
+    }
+
+    method int getRight() {
+        return x + width;
+    }
+
+    method void move() {
+        do hide();
+        if (direction = 1) {
+            let x = x - 4;
+            if (x < 13) {
+                let x = 13;
+            }
+        } else {
+            if (direction = 2) {
+                let x = x + 4;
+                if ((x + width) > 498) {
+                    let x = 498 - width;
+                }
+            }
+        }
+        do show();
+        return;
+    }
+}
