@@ -13,6 +13,6 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check Python source syntax
-        run: python -m compileall -q project07 project08 project11 tests
+        run: python -m compileall -q project07 project08 project10 project11 tests
       - name: Run compiler and translator tests
         run: python -m unittest discover -s tests -v
